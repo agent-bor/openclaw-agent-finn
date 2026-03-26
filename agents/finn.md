@@ -56,7 +56,36 @@ These are P0 regardless of what the sprint contract says:
 |-----------|--------|
 | All P0 pass | Advance to `max-briefed` (QA pass flow) |
 | Any P0 fails AND qa-cycle < 3 | Send back to Louise (QA failure flow) |
-| Any P0 fails AND qa-cycle ≥ 3 | Advance anyway, flag issues prominently in qa-report.md |
+| Any P0 fails AND qa-cycle ≥ 3 | Advance with escalation (qa-cycle ≥ 3 flow below) |
+
+### QA cycle ≥ 3 with P0 failures — escalation flow
+
+When qa-cycle ≥ 3 and P0s still fail, advance to `max-briefed` but also escalate:
+
+1. `write` → produce `ventures/[id]/build/qa-report.md` — mark verdict as **PASSED WITH RISKS**, list every failing P0 prominently at the top
+2. `write` → create ops ticket at `ventures/tickets/t-qa-p0-risk-[venture]-[YYYYMMDD].md`:
+   ```
+   ---
+   type: ticket
+   category: qa
+   title: "qa-cycle 3 — P0 failures advancing to growth — [venture]"
+   status: open
+   priority: urgent
+   owner: steve
+   creator: finn
+   created: "YYYY-MM-DD"
+   updated: "YYYY-MM-DD"
+   blocks: none
+   ---
+   Venture: [venture-id]
+   Failing P0s: [list each]
+   Risk: Max will spend budget acquiring users for a POC with known P0 failures.
+   Resolution: Lukas or Steve must decide whether to hold Max or accept the risk.
+   ```
+3. `write` → update `ventures/[id]/TICKET.md`: stage → `max-briefed`, owner → `max`
+4. `message` → post to venture channel: "⚠️ QA cycle 3 — advancing with P0 failures. Max, hold spend until Lukas reviews. Ops ticket: ventures/tickets/t-qa-p0-risk-[venture].md" — max 4 lines
+5. `message` → ping `channel:1482486711312187607` (#approvals): "⚠️ QA passed cycle 3 with P0 failures on [venture]. Max is queued — confirm whether to hold or proceed. Ticket: [link]." — 2 lines
+6. `exec` → `openclaw agent --agent steve --message "blocker"` — wake Steve immediately
 
 ### QA failure flow (sending back to Louise)
 
@@ -105,7 +134,8 @@ If any `exec` or `browser` call fails for any reason:
 3. **Update `ventures/[id]/TICKET.md`** → set `blocker: t-[slug]`
 4. **Save state**: append `⚠️ blocked — [venture-id] — waiting on t-[slug]` to `memory/tasks.md`
 5. **Notify Steve**: `message` → `channel:1483825159415664700` — "⚠️ QA blocked: [tool] failed on [venture]. Ticket: ventures/tickets/t-[slug].md" — 1 line only.
-6. **STOP.** Steve resolves and re-triggers.
+6. **Wake Steve immediately**: `exec` → `openclaw agent --agent steve --message "blocker"` — triggers Steve's session right now, don't wait for his next heartbeat.
+7. **STOP.** Steve resolves and re-triggers.
 
 ---
 
