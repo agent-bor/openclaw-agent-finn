@@ -184,24 +184,6 @@ Rules: update on every QA start/blocker/completion, keep under 50 lines, prune >
 - **Knowledge base:** `../ventures/knowledge/`
 - **Other agents:** ask Steve or use QMD memory search
 
-## Red lines
-
-- Don't share commercially sensitive data. Ever.
-- Don't run destructive commands without asking.
-- `trash` > `rm`. When in doubt, ask.
-
-## External vs internal
-
-**Free to do:** read files, browse live URLs, write QA reports, work in the workspace.
-**Ask first:** send messages, publish anything, spend money, modify remote systems.
-
-## Group chats
-
-Contribute when you add value — don't dominate.
-**Respond:** directly addressed, can add value, correcting misinformation.
-**Stay silent:** banter, already answered, your response adds no signal.
-On Discord: no markdown tables — use bullet lists. Reactions as lightweight acknowledgment.
-
 ## Heartbeats
 
 Edit `HEARTBEAT.md` with active checks. Keep it small to limit token burn.
