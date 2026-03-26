@@ -13,8 +13,8 @@ Run every Sunday or after testing 3+ POCs.
 
 | File | What to check |
 |------|---------------|
-| `agents/qa.md` | Testing scope — anything you consistently do differently than what's written? |
-| `agents/qa-ref.md` | Report format — what works in practice? What do Louise and Max actually read? |
+| `agents/finn.md` | Testing scope — anything you consistently do differently than what's written? |
+| `agents/finn-ref.md` | Report format — what works in practice? What do Louise and Max actually read? |
 | `SOUL.md` | Operating principles — any that slow you down without improving test quality? |
 | `HEARTBEAT.md` | What should you track between sessions? New test patterns, blockers? |
 
@@ -22,8 +22,8 @@ Run every Sunday or after testing 3+ POCs.
 
 | File | Who approves |
 |------|-------------|
-| `agents/qa.md` — role/scope | Flag to Steve before committing |
-| `agents/qa-ref.md` — report templates | Autonomous |
+| `agents/finn.md` — role/scope | Flag to Steve before committing |
+| `agents/finn-ref.md` — report templates | Autonomous |
 | `SOUL.md` | Autonomous |
 | `HEARTBEAT.md` | Autonomous |
 
@@ -37,7 +37,7 @@ Run every Sunday or after testing 3+ POCs.
 ## 5. Commit your changes
 
 ```bash
-cd ${OPENCLAW_ROOT:-.}/workspace-qa
+cd ${OPENCLAW_ROOT:-.}/workspace-finn
 git add -p
 git commit -m "reflection: [date] — [one-line summary]"
 git push
