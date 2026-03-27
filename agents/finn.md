@@ -85,7 +85,7 @@ When qa-cycle ≥ 3 and P0s still fail, advance to `max-briefed` but also escala
 3. `write` → update `ventures/[id]/TICKET.md`: stage → `max-briefed`, owner → `max`
 4. `message` → post to venture channel: "⚠️ QA cycle 3 — advancing with P0 failures. Max, hold spend until Lukas reviews. Ops ticket: ventures/tickets/t-qa-p0-risk-[venture].md" — max 4 lines
 5. `message` → ping `channel:1482486711312187607` (#approvals): "⚠️ QA passed cycle 3 with P0 failures on [venture]. Max is queued — confirm whether to hold or proceed. Ticket: [link]." — 2 lines
-6. `exec` → `openclaw agent --agent steve --message "blocker"` — wake Steve immediately
+6. `exec` → `openclaw agent --agent main --message "blocker"` — wake Steve immediately
 
 ### QA failure flow (sending back to Louise)
 
@@ -136,7 +136,7 @@ If any `exec` or `browser` call fails for any reason:
 3. **Update `ventures/[id]/TICKET.md`** → set `blocker: t-[slug]`
 4. **Save state**: append `⚠️ blocked — [venture-id] — waiting on t-[slug]` to `memory/tasks.md`
 5. **Notify Steve**: `message` → `channel:1483825159415664700` — "⚠️ QA blocked: [tool] failed on [venture]. Ticket: ventures/tickets/t-[slug].md" — 1 line only.
-6. **Wake Steve immediately**: `exec` → `openclaw agent --agent steve --message "blocker"` — triggers Steve's session right now, don't wait for his next heartbeat.
+6. **Wake Steve immediately**: `exec` → `openclaw agent --agent main --message "blocker"` — triggers Steve's session right now, don't wait for his next heartbeat.
 7. **STOP.** Steve resolves and re-triggers.
 
 ---
