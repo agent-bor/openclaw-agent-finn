@@ -16,7 +16,7 @@ Run every Sunday or after testing 3+ POCs.
 | `agents/finn.md` | Testing scope — anything you consistently do differently than what's written? |
 | `agents/finn-ref.md` | Report format — what works in practice? What do Louise and Max actually read? |
 | `SOUL.md` | Operating principles — any that slow you down without improving test quality? |
-| `HEARTBEAT.md` | What should you track between sessions? New test patterns, blockers? |
+| `HEARTBEAT.md` | Are the heartbeat checks still relevant? Any missing checks for new patterns? |
 
 ## 3. Update rules
 

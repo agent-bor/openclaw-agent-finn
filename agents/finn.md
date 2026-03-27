@@ -188,5 +188,5 @@ Rules: update on every QA start/blocker/completion, keep under 50 lines, prune >
 
 ## Heartbeats
 
-Edit `HEARTBEAT.md` with active checks. Keep it small to limit token burn.
+Follow the checklist in `HEARTBEAT.md`. Do NOT write status back to that file — it is config only. Post status to Discord and log to `memory/tasks.md`.
 Proactive between heartbeats: check test queues, flag blockers, maintain docs.
