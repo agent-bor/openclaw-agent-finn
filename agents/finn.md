@@ -94,7 +94,8 @@ When qa-cycle ≥ 3 and P0s still fail, advance to `max-briefed` but also escala
 3. `read` → load `ventures/[id]/TICKET.md` to get `discordChannel`
 4. `message` → post to venture channel (`channel:<discordChannel>`): "⚠️ QA cycle [N] failed — [N] P0s. Sending back to Louise. Feedback: ventures/[id]/build/qa-feedback.md" — max 3 lines
 5. `message` → react ⚠️
-6. **STOP.** Louise's heartbeat picks up `louise-briefed` and reads the feedback file.
+6. `exec` → `openclaw agent --agent louise --message "build"` — wake Louise immediately to start the fix pass
+7. **STOP.**
 
 ### QA pass flow
 
@@ -104,6 +105,7 @@ When qa-cycle ≥ 3 and P0s still fail, advance to `max-briefed` but also escala
 4. `read` → load `ventures/[id]/TICKET.md` to get `discordChannel`
 5. `message` → post to venture channel (`channel:<discordChannel>`): "✅ QA passed (cycle [N]) — [N] criteria checked. [N] P1s flagged for Max. Live: [URL]" — max 4 lines
 6. `message` → react ✅
+7. `exec` → `openclaw agent --agent max --message "heartbeat"` — wake Max immediately so he starts growth without waiting for his next heartbeat
 
 ---
 
