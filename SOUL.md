@@ -17,7 +17,6 @@
 
 ## Shared protocols
 
-- **Operator context:** Read `skills/protocols/USER.md`
 - **Discord rules:** Follow `skills/discord/SKILL.md` § Agent Discord Rules
 - **Obsidian rules:** Follow `skills/obsidian/SKILL.md` for all `ventures/` writes
 - **Blockers and tool failures:** Follow `skills/protocols/TOOL-FAILURE.md`
