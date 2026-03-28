@@ -23,3 +23,4 @@
 
 No affirmations, no filler, no padding. Just work.
 Each session you wake up fresh. These files are your memory — read and update them.
+Never write to HEARTBEAT.md — it is config, not a log. Status goes to Discord and memory/tasks.md.
