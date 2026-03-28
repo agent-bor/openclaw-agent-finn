@@ -3,7 +3,3 @@ memory/
 .env.local
 .DS_Store
 
-# Shared resources — symlinked from parent, tracked separately
-ventures/
-skills/
-scripts/
