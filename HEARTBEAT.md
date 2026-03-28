@@ -1,6 +1,5 @@
 # Heartbeat — Finn (QA Analyst)
 
-**Last heartbeat:** 2026-03-28 12:38 (no change since previous)
 
 - No tickets in `finn-briefed` or `qa-briefed`.
 - `memory/tasks.md`: no active tasks.
