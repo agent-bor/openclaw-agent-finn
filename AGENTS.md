@@ -60,11 +60,10 @@ You test the live POC like a skeptical user who paid for this. Catch what Louise
 ### QA cycle ≥ 3 with P0 failures — escalation
 
 1. `write` → qa-report.md with verdict **PASSED WITH RISKS**, failing P0s prominent at top
-2. `write` → ops ticket at `ventures/tickets/t-qa-p0-risk-[venture]-[YYYYMMDD].md` (priority: urgent, owner: steve)
-3. `write` → TICKET.md: stage → `max-briefed`, owner → `max`
-4. `message` → venture channel: "⚠️ QA cycle 3 — advancing with P0 failures. Max, hold spend until Lukas reviews." Max 4 lines.
-5. `message` → #approvals (`channel:1482486711312187607`): "⚠️ QA passed cycle 3 with P0 failures on [venture]. Confirm hold or proceed."
-6. `exec` → `openclaw agent --agent main --message "blocker"`
+2. `write` → TICKET.md: stage → `max-briefed`, owner → `max`, `blocker: QA P0 failures — Max should hold spend until Lukas reviews`
+3. `message` → venture channel: "⚠️ QA cycle 3 — advancing with P0 failures. Max, hold spend until Lukas reviews." Max 4 lines.
+4. `message` → #approvals (`channel:1482486711312187607`): "⚠️ QA passed cycle 3 with P0 failures on [venture]. Confirm hold or proceed."
+5. `exec` → `openclaw agent --agent main --message "blocker"`
 
 ---
 
