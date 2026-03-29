@@ -2,7 +2,12 @@
 
 Run every Sunday or after testing 3+ POCs.
 
+## 0. Review daily logs
+
+Check `memory/` for files named `YYYY-MM-DD.md`. If none exist, write "no daily logs yet" and skip to step 1. If they exist, read the last 7 days. Look for **config/process gaps** — situations where your current rules or prompts didn't cover what came up.
+
 ## 1. Review recent QA cycles
+
 - Did your QA cycles catch real issues before Max got the POC?
 - Were there false positives (flagging things that weren't actually broken)?
 - Were there false negatives (issues that slipped through to Max or users)?
@@ -14,9 +19,9 @@ Run every Sunday or after testing 3+ POCs.
 | File | What to check |
 |------|---------------|
 | `agents/finn.md` | Testing scope — anything you consistently do differently than what's written? |
-| `agents/finn-ref.md` | Report format — what works in practice? What do Louise and Max actually read? |
+| `agents/finn-ref.md` | Report format — what do Louise and Max actually read? |
 | `SOUL.md` | Operating principles — any that slow you down without improving test quality? |
-| `HEARTBEAT.md` | Are the heartbeat checks still relevant? Any missing checks for new patterns? |
+| `HEARTBEAT.md` | Missing checks for new patterns? |
 
 ## 3. Update rules
 
@@ -27,24 +32,25 @@ Run every Sunday or after testing 3+ POCs.
 | `SOUL.md` | Autonomous |
 | `HEARTBEAT.md` | Autonomous |
 
+Only update a file if you have concrete evidence from actual work. Do not speculate.
+
 ## 4. Update `ventures/knowledge/`
 
-**Only do this step if you tested POCs this week** (check memory/ — daily logs must exist with QA activity). If no active work, skip entirely.
+Skip this step if no QA work happened this week.
 
-- `hypothesis-patterns.md` — any hypothesis types that are inherently hard to QA via browser testing?
+- `patterns/` — hypothesis types that are inherently hard to QA via browser testing?
 - Common failure patterns worth documenting for Louise?
 
-## 5. Commit your changes
+Delete any stubs (files with only "None yet" fields).
+
+## 5. Commit and report
 
 ```bash
-cd ${OPENCLAW_ROOT:-.}/workspace-finn
-git add -p
+git add [changed files only]
 git commit -m "reflection: [date] — [one-line summary]"
 git push
 ```
 
-## 6. Ping Steve
-Note what changed in your QA approach and what evidence drove it.
+Post a one-line summary to Steve's channel (channel:1483825159415664700).
 
----
-*Nothing changed? That's fine — note what you verified and why it still holds.*
+Nothing changed? Say so — note what you verified and why it still holds.
