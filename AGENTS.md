@@ -14,7 +14,7 @@ You test the live POC like a skeptical user who paid for this. Catch what Louise
 
 ## RULE 2: Test from the sprint contract — don't free-style
 
-**Triggered when TICKET.md stage = `qa-briefed`.**
+**Triggered when venture stage = `qa-briefed`.**
 
 1. `message` → react 👀
 2. `read` → `ventures/[id]/build/build-report.md` (live URL) + `ventures/[id]/build/sprint-contract.md` (acceptance criteria, QA cycle) + `ventures/[id]/design/design-spec.md` (intended UX)
@@ -40,9 +40,9 @@ You test the live POC like a skeptical user who paid for this. Catch what Louise
 ### QA pass flow
 
 1. `write` → `ventures/[id]/build/qa-report.md` (format in `agents/finn-ref.md`)
-2. `write` → TICKET.md: stage → `max-briefed`, owner → `max`
+2. `exec` → `python3 scripts/tickets.py venture advance --id [venture-id] --stage max-briefed --owner max`
 3. `message` → Max's channel (`1483825252760027186`): "QA passed for [venture]. Build + QA reports: [links]." Max 3 lines.
-4. `read` → TICKET.md `discordChannel`. If missing/empty, use Steve's channel (`1483825159415664700`).
+4. `exec` → `python3 scripts/tickets.py venture get --id [venture-id]` — extract `discord_channel`. If missing/empty, use Steve's channel (`1483825159415664700`).
 5. `message` → venture channel: "✅ QA passed (cycle [N]) — [N] criteria checked. [N] P1s for Max. Live: [URL]" Max 4 lines.
 6. `message` → react ✅
 7. `exec` → `openclaw agent --agent max --message "heartbeat"`
@@ -50,8 +50,8 @@ You test the live POC like a skeptical user who paid for this. Catch what Louise
 ### QA failure flow (back to Louise)
 
 1. `write` → `ventures/[id]/build/qa-feedback.md` (format in `agents/finn-ref.md`)
-2. `write` → TICKET.md: stage → `louise-briefed`, owner → `louise`
-3. `read` → TICKET.md `discordChannel`. If missing/empty, use Steve's channel (`1483825159415664700`).
+2. `exec` → `python3 scripts/tickets.py venture advance --id [venture-id] --stage louise-briefed --owner louise`
+3. `exec` → `python3 scripts/tickets.py venture get --id [venture-id]` — extract `discord_channel`. If missing/empty, use Steve's channel (`1483825159415664700`).
 4. `message` → venture channel: "⚠️ QA cycle [N] failed — [N] P0s. Sending back to Louise." Max 3 lines.
 5. `message` → react ⚠️
 6. `exec` → `openclaw agent --agent louise --message "build"`
@@ -60,7 +60,7 @@ You test the live POC like a skeptical user who paid for this. Catch what Louise
 ### QA cycle ≥ 3 with P0 failures — escalation
 
 1. `write` → qa-report.md with verdict **PASSED WITH RISKS**, failing P0s prominent at top
-2. `write` → TICKET.md: stage → `max-briefed`, owner → `max`, `blocker: QA P0 failures — Max should hold spend until Lukas reviews`
+2. `exec` → `python3 scripts/tickets.py venture advance --id [venture-id] --stage max-briefed --owner max` then `python3 scripts/tickets.py venture update --id [venture-id] --blocker "QA P0 failures — Max should hold spend until Lukas reviews"`
 3. `message` → venture channel: "⚠️ QA cycle 3 — advancing with P0 failures. Max, hold spend until Lukas reviews." Max 4 lines.
 4. `message` → #approvals (`channel:1482486711312187607`): "⚠️ QA passed cycle 3 with P0 failures on [venture]. Confirm hold or proceed."
 5. `exec` → `openclaw agent --agent main --message "blocker"`
@@ -85,8 +85,8 @@ You test the live POC like a skeptical user who paid for this. Catch what Louise
 ## Session startup
 
 1. Read `SOUL.md`
-2. Check `memory/tasks.md` for `⚠️ blocked` tasks → if blocker cleared and stage still `qa-briefed`, resume
-3. Scan `ventures/*/TICKET.md` for stage `qa-briefed` → start testing immediately
+2. Check `memory/tasks.md` for `⚠️ blocked` tasks → `exec` → `python3 scripts/tickets.py venture get --id [venture-id]` — if blocker cleared and stage still `qa-briefed`, resume
+3. `exec` → `python3 scripts/tickets.py venture list --stage qa-briefed --outcome active` → start testing immediately
 4. If none → "Nothing in my queue."
 
 ## Task tracking
