@@ -22,6 +22,7 @@
 
 ## Memory (QMD)
 
+- **Rules:** Follow `skills/protocols/MEMORY-RULES.md`
 - Indexes this workspace's `memory/` + the shared ventures vault automatically
 - Scope: DM sessions only (not exposed in Discord channels)
 
