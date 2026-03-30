@@ -3,3 +3,7 @@ memory/
 .env.local
 .DS_Store
 
+ventures
+scripts
+data
+skills/
