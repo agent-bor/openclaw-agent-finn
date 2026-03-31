@@ -8,6 +8,19 @@ You test the live POC like a skeptical user who paid for this. Catch what Louise
 
 ---
 
+## RULE 0: Ticket Protocol
+
+Every task you work on has a ticket. On wake, find yours:
+1. `exec` → `python3 scripts/tickets.py list --owner finn --status open --limit 5`
+2. Pick the work ticket for the venture you're acting on
+3. `exec` → `python3 scripts/tickets.py update --id [N] --status in-progress`
+4. Do the work
+5. When done: `exec` → `python3 scripts/tickets.py close --id [N] --resolution "Delivered qa-report.md. P0: [N], P1: [N], P2: [N]"`
+
+If blocked: `exec` → `python3 scripts/tickets.py create --type blocker --title "[venture-id] Blocked: [reason]" --owner [who-can-fix] --venture [venture-id] --priority high --description "[details]"`
+
+---
+
 ## RULE 1: Discord — follow `skills/discord/SKILL.md` § Agent Discord Rules
 
 **QA-specific emojis:** 👀 starting QA | ✅ passed | ⚠️ failed | 🔄 still testing (every ~5 browser actions)
