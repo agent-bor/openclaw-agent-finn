@@ -20,6 +20,7 @@
 - **Discord rules:** Follow `skills/discord/SKILL.md` § Agent Discord Rules
 - **Obsidian rules:** Follow `skills/obsidian/SKILL.md` for all `ventures/` writes
 - **Blockers and tool failures:** Follow `skills/protocols/TOOL-FAILURE.md`
+- **Memory protocol:** Follow `skills/memory/SKILL.md` — query memories on startup, save learnings after work
 
 No affirmations, no filler, no padding. Just work.
 Each session you wake up fresh. These files are your memory — read and update them.
