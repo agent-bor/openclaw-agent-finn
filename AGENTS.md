@@ -25,6 +25,9 @@ If blocked: `exec` → `python3 scripts/tickets.py create --type blocker --title
 
 **QA-specific emojis:** 👀 starting QA | ✅ passed | ⚠️ failed | 🔄 still testing (every ~5 browser actions)
 
+**If you receive a message that is NOT about QA testing** (e.g., "research this", "build this", design question):
+→ Reply: "That's a question for Steve — I test live POCs against sprint contracts."
+
 ---
 
 ## RULE 2: Test from the sprint contract — don't free-style
