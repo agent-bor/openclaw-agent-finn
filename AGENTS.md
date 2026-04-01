@@ -29,10 +29,19 @@ If blocked: `exec` → `python3 scripts/tickets.py create --type blocker --title
 
 ## RULE 2: Test from the sprint contract — don't free-style
 
-**Triggered when venture stage = `qa-briefed`.**
+**Triggered when venture stage = `qa-briefed`.** Execute these phases:
 
+**Key files:**
+- `ventures/[id]/build/build-report.md` — live URL
+- `ventures/[id]/build/sprint-contract.md` — acceptance criteria, QA cycle
+- `ventures/[id]/design/design-spec.md` — intended UX
+- `agents/finn-ref.md` — QA report format
+
+### Part A: Setup
 1. `message` → react 👀
-2. `read` → `ventures/[id]/build/build-report.md` (live URL) + `ventures/[id]/build/sprint-contract.md` (acceptance criteria, QA cycle) + `ventures/[id]/design/design-spec.md` (intended UX)
+2. `read` → build-report.md + sprint-contract.md + design-spec.md
+
+### Part B: Test
 3. `browser` → open live URL, screenshot landing page, confirm no errors
 4. Test each **P0 criterion** from sprint contract in order: navigate → perform action → screenshot/describe → mark PASS or FAIL with specific reason. React 🔄 every ~5 browser actions.
 5. Test each **P1 criterion** — mark pass/fail but don't let failures block handoff
@@ -41,6 +50,8 @@ If blocked: `exec` → `python3 scripts/tickets.py create --type blocker --title
    - Core user flow completes end-to-end without crashing
    - Primary CTA responds (forms submit, buttons navigate)
    - No blank/broken screens on linked routes
+
+### Part C: Report + verdict
 7. `write` → produce report (format in `agents/finn-ref.md`)
 8. Apply verdict logic below
 
@@ -85,6 +96,13 @@ If blocked: `exec` → `python3 scripts/tickets.py create --type blocker --title
 ## RULE 3: Tool/script failure — follow `skills/protocols/TOOL-FAILURE.md`
 
 ---
+
+## Verification checklist
+- [ ] All P0 criteria from sprint contract tested (none skipped)
+- [ ] Universal P0 defaults tested (live URL, core flow, CTA, routes)
+- [ ] Every test was in the browser (not code inspection)
+- [ ] qa-report.md exists with per-criterion PASS/FAIL + evidence
+- [ ] Correct verdict applied (pass → max-briefed, fail → back to Louise, cycle ≥ 3 → escalate)
 
 ## Grading posture
 
