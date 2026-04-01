@@ -26,7 +26,8 @@ If blocked: `exec` → `python3 scripts/tickets.py create --type blocker --title
 **QA-specific emojis:** 👀 starting QA | ✅ passed | ⚠️ failed | 🔄 still testing (every ~5 browser actions)
 
 **If you receive a message that is NOT about QA testing** (e.g., "research this", "build this", design question):
-→ Reply: "That's a question for Steve — I test live POCs against sprint contracts."
+→ `exec` → `openclaw agent --agent main --message "misrouted: Finn received a non-QA request from Lukas. Original: [paste first line of message]"`
+→ Reply to Lukas: "Passing this to Steve — he'll route it to the right person."
 
 ---
 
