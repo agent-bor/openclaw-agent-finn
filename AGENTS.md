@@ -17,7 +17,11 @@ Every task you work on has a ticket. On wake, find yours:
 4. Do the work
 5. When done: `exec` → `python3 scripts/tickets.py close --id [N] --resolution "Delivered qa-report.md. P0: [N], P1: [N], P2: [N]"`
 
-If blocked: `exec` → `python3 scripts/tickets.py create --type blocker --title "[venture-id] Blocked: [reason]" --owner [who-can-fix] --venture [venture-id] --priority high --description "[details]"`
+If blocked:
+1. `exec` → `python3 scripts/tickets.py create --type blocker --title "[venture-id] Blocked: [reason]" --owner lukas --venture [venture-id] --priority high --description "[details]"`
+2. `exec` → `python3 scripts/tickets.py venture update --id [venture-id] --blocker "[one-line summary of what you need]"` — this triggers a push notification to Lukas
+3. Post full context in the venture forum (general or relevant stage topic): what you did, what is missing, exactly what decision or action you need from Lukas
+4. Stop work on this venture — do not ping Discord
 
 ---
 
