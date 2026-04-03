@@ -91,8 +91,7 @@ If blocked:
 1. `write` → qa-report.md with verdict **PASSED WITH RISKS**, failing P0s prominent at top
 2. `exec` → `python3 scripts/tickets.py venture advance --id [venture-id] --stage max-briefed --owner max` then `python3 scripts/tickets.py venture update --id [venture-id] --blocker "QA P0 failures — Max should hold spend until Lukas reviews"`
 3. `exec` → post to venture forum qa topic: `curl -s -X POST http://localhost:4321/api/forum -H "Content-Type: application/json" -d '{"ventureId":"[venture-id]","topic":"qa","text":"QA cycle 3 — PASSED WITH RISKS.\n\nP0 failures remain. Advancing to Max but recommending hold on spend until Lukas reviews.\nSee qa-report.md for full details.","author":"finn"}'`
-4. `exec` → `openclaw message send --channel discord --target "channel:1482486711312187607" --message "⚠️ QA passed cycle 3 with P0 failures on [venture]. Confirm hold or proceed."` — #approvals ping
-5. `exec` → `openclaw agent --agent main --message "blocker"`
+4. `exec` → `openclaw agent --agent main --message "blocker"` — Steve will set a blocker to trigger push notification to Lukas
 
 ---
 
