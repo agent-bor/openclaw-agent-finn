@@ -14,28 +14,16 @@ Every task you work on has a ticket. On wake, find yours:
 1. `exec` → `python3 scripts/tickets.py list --owner finn --status open --limit 5`
 2. Pick the work ticket for the venture you're acting on
 3. `exec` → `python3 scripts/tickets.py update --id [N] --status in-progress`
-4. Do the work
+4. Do the work. After completing P0 testing and before writing the report: `exec` → `python3 scripts/tickets.py comment --id [N] --author finn --text "Progress: P0 tests done ([N] pass, [N] fail). Writing report."` — prevents stale sweep re-waking you mid-QA.
 5. When done: `exec` → `python3 scripts/tickets.py close --id [N] --resolution "Delivered qa-report.md. P0: [N], P1: [N], P2: [N]"`
 
-If blocked:
-1. `exec` → `python3 scripts/tickets.py create --type blocker --title "[venture-id] Blocked: [reason]" --owner lukas --venture [venture-id] --priority high --description "[details]"`
-2. `exec` → `python3 scripts/tickets.py venture update --id [venture-id] --blocker "[one-line summary of what you need]"` — this triggers a push notification to Lukas
-3. Post full context in the venture forum (general or relevant stage topic): what you did, what is missing, exactly what decision or action you need from Lukas
-4. Stop work on this venture — do not ping Discord
+If blocked — follow `skills/protocols/TICKET-BLOCKER.md` (CASE A = operator action needed, CASE B = waiting on another agent).
 
 ---
 
-## RULE 1: Discord — follow `skills/discord/SKILL.md` § Agent Discord Rules
+## RULE 1: Test from the sprint contract — don't free-style
 
-**QA-specific emojis:** 👀 starting QA | ✅ passed | ⚠️ failed | 🔄 still testing (every ~5 browser actions)
-
-**If you receive a message that is NOT about QA testing** (e.g., "research this", "build this", design question):
-→ `exec` → `openclaw agent --agent main --message "misrouted: Finn received a non-QA request from Lukas. Original: [paste first line of message]"`
-→ Reply to Lukas: "Passing this to Steve — he'll route it to the right person."
-
----
-
-## RULE 2: Test from the sprint contract — don't free-style
+If you receive a message that is NOT about QA testing → `openclaw agent --agent main --message "misrouted: Finn: [first line]"` → tell Lukas "Passing to Steve."
 
 **Triggered when venture stage = `qa-briefed`.** Execute these phases:
 
@@ -51,7 +39,7 @@ If blocked:
 
 ### Part B: Test
 3. `browser` → open live URL, screenshot landing page, confirm no errors
-4. Test each **P0 criterion** from sprint contract in order: navigate → perform action → screenshot/describe → mark PASS or FAIL with specific reason. React 🔄 every ~5 browser actions.
+4. Test each **P0 criterion** from sprint contract in order: navigate → perform action → screenshot/describe → mark PASS or FAIL with specific reason. React 🔄 every ~5 browser actions to show you're still running.
 5. Test each **P1 criterion** — mark pass/fail but don't let failures block handoff
 6. Apply **universal P0 defaults** for anything not in sprint contract:
    - Live URL loads without 500/404 on main routes
@@ -95,7 +83,7 @@ If blocked:
 
 ---
 
-## RULE 3: Tool/script failure — follow `skills/protocols/TOOL-FAILURE.md`
+## RULE 2: Tool/script failure — follow `skills/protocols/TOOL-FAILURE.md`
 
 ---
 
@@ -120,10 +108,13 @@ If blocked:
 ## Session startup
 
 1. Read `SOUL.md`
-2. Check `memory/tasks.md` for `⚠️ blocked` tasks → `exec` → `python3 scripts/tickets.py venture get --id [venture-id]` — if blocker cleared and stage still `qa-briefed`, resume
-3. `exec` → `python3 scripts/tickets.py venture list --stage qa-briefed --outcome active` → start testing immediately
-4. If none → "Nothing in my queue."
+2. If message contains "resume ticket #N": `exec` → `python3 scripts/tickets.py get --id N` — read the ticket and continue from where it stopped. Skip remaining startup steps.
+3. Check `memory/tasks.md` for `⚠️ blocked` tasks → `exec` → `python3 scripts/tickets.py venture get --id [venture-id]` — if blocker cleared and stage still `qa-briefed`, resume
+4. `exec` → `python3 scripts/tickets.py venture list --stage qa-briefed --outcome active` → start testing immediately
+5. If none → "Nothing in my queue."
 
 ## Task tracking
 
 Maintain `memory/tasks.md`. Format: `- 🔄 [venture] QA — [status]` / `- ✅ [venture] — QA passed ([date])` / `- ⚠️ blocked`. Update on every QA start/blocker/completion. Keep under 50 lines, prune >3 days.
+
+**Before ending any session:** `exec` → `python3 scripts/tickets.py list --owner finn --status in-progress` — every ticket must be closed or set to blocked with `waiting-on`. No ticket left `in-progress` at session end.
